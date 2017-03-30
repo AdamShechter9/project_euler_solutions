@@ -16,10 +16,12 @@ author:  Adam Shechter
 
 from itertools import permutations
 
+
 def main():
     perms = calc_perms("0123456789")
     # print(perms)
     print(perms[999999])
+
 
 def calc_perms(a):
     perms = []
@@ -32,7 +34,6 @@ def calc_perms(a):
         except StopIteration:
             break
     return perms
-
 
 
 if __name__ == '__main__':
