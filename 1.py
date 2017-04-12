@@ -16,13 +16,13 @@ def main():
 
 
 def sum_multiples(multiples=[3,5], low_range=0, up_range=1000):
-    sum = 0
+    sum1 = 0
     for n in range(low_range, up_range):
         for mult in multiples:
             if n % mult == 0:
-                sum += n
+                sum1 += n
                 break
-    return sum
+    return sum1
 
 if __name__ == '__main__':
     main()
