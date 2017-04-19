@@ -16,7 +16,6 @@ indivisible except by itself and 1.
 author:  Adam Shechter
 """
 
-PRIMES = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
 
 def main():
     print(get_primes(13195))
@@ -26,6 +25,8 @@ def main():
 
 
 def get_primes(original_x):
+    PRIMES = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97)
+
     print("Puzzle Number: {}".format(original_x))
     primes_x = []
     x = original_x
