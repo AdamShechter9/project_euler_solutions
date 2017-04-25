@@ -37,6 +37,7 @@ import math
 
 
 def main():
+    # can speed things up by caching primes to a file
     prime_pool = get_primes(10001, 100000000)
     print(len(prime_pool))
     answers = prime_digit_replacement(prime_pool, 1, 7)
@@ -45,7 +46,7 @@ def main():
 
 def prime_digit_replacement(prime_pool, digits, target):
     replace_pool = [x for x in prime_pool if prime_optimization(x, digits, target)]
-    # replace_pool = prime_pool
+    used_patterns = []
     answers = set()
     for prime in replace_pool:
         len1 = len(str(prime))
@@ -55,7 +56,11 @@ def prime_digit_replacement(prime_pool, digits, target):
             if int(prime_str[i1:i1+1]) > (10-target):
                 continue
             prime_str = prime_str[:i1] + "*" + prime_str[i1+1:]
-            result = prime_digit_test(prime_pool, prime_str)
+            if prime_str not in used_patterns:
+                result = prime_digit_test(prime_pool, prime_str)
+                used_patterns.append(prime_str)
+            else:
+                continue
             if result >= 6:
                 print("testing: {}      str: {}     result:  {}".format(prime, prime_str, result))
             if result >= target:
@@ -71,7 +76,11 @@ def prime_digit_replacement(prime_pool, digits, target):
                     continue
                 prime_str = prime_str[:i1] + "*" + prime_str[i1+1:]
                 prime_str = prime_str[:i2] + "*" + prime_str[i2+1:]
-                result = prime_digit_test(prime_pool, prime_str)
+                if prime_str not in used_patterns:
+                    result = prime_digit_test(prime_pool, prime_str)
+                    used_patterns.append(prime_str)
+                else:
+                    continue
                 if result >= 6:
                     print("testing: {}      str: {}     result:  {}".format(prime, prime_str, result))
                 if result >= target:
@@ -92,7 +101,11 @@ def prime_digit_replacement(prime_pool, digits, target):
                     prime_str = prime_str[:i1] + "*" + prime_str[i1+1:]
                     prime_str = prime_str[:i2] + "*" + prime_str[i2+1:]
                     prime_str = prime_str[:i3] + "*" + prime_str[i3+1:]
-                    result = prime_digit_test(prime_pool, prime_str)
+                    if prime_str not in used_patterns:
+                        result = prime_digit_test(prime_pool, prime_str)
+                        used_patterns.append(prime_str)
+                    else:
+                        continue
                     if result >= 6:
                         print("testing: {}      str: {}     result:  {}".format(prime, prime_str, result))
                     if result >= target:
