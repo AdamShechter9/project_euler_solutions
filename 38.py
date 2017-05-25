@@ -24,7 +24,7 @@ from itertools import permutations
 def main():
     pandigitals = pandigital_multiples('123456789')
     print(pandigitals)
-
+W
 
 def pandigital_multiples(digits1):
     digits_perms = ["".join(x) for x in list(permutations(digits1))]
